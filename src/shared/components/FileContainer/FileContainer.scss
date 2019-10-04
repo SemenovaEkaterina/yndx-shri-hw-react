@@ -1,0 +1,148 @@
+@import "scss/index";
+
+.FileContainer {
+  //font-size: 0;
+
+  border: $global-border-width-s solid $gray-10;
+  border-radius: $global-border-radius-s;
+
+  overflow-x: auto;
+
+  &-header {
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: $global-spacing-s;
+    background: $gray-30;
+
+    @include media("<=phone") {
+      display: block;
+      padding-left: $global-spacing-m;
+    }
+  }
+
+  &-info {
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    max-width: 0;
+    width: 100%;
+    padding-right: $global-spacing-s;
+
+    @include media("<=phone") {
+      display: block;
+      max-width: unset;
+      padding-bottom: $global-spacing-s-h;
+    }
+  }
+
+  &-status {
+    display: inline-block;
+    vertical-align: middle;
+
+    color: $purple-100;
+
+    padding-right: $global-spacing-s;
+  }
+
+  &-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 12px;
+    height: 16px;
+
+    background: url("/static/imgs/file.svg") 50% 50% no-repeat;
+    background-size: contain;
+
+    // Геометрически находится выше середины
+    margin-bottom: $global-spacing-xxs;
+
+    margin-right: $global-spacing-xs;
+    &:first-child {
+      margin-left: $global-spacing-xxs;
+    }
+  }
+
+  &-size {
+    color: $gray-80;
+  }
+
+  &-actions {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+
+    white-space: nowrap;
+
+    @include media("<=phone") {
+      display: block;
+      text-align: left;
+    }
+  }
+
+  &-count {
+    display: inline-block;
+
+    padding-left: $global-spacing-m;
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &_type {
+      &_positive {
+        color: $green-60;
+
+        &:before {
+          content: "+"
+        }
+      }
+      &_negative {
+        color: $red-100;
+        &:before {
+          content: "-"
+        }
+      }
+    }
+  }
+
+  &-link {
+    $size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+
+    padding-left: $global-spacing-xl;
+    width: $size;
+    height: $size;
+
+    cursor: pointer;
+
+    &_type {
+      &_expand {
+        background: url("/static/imgs/expand.svg") 50% 50% no-repeat / contain;
+
+        @include media("<=phone") {
+          float: right;
+        }
+      }
+
+      &_save {
+        width: 36px;
+        height: 28px;
+        padding-left: 0;
+
+        background: url("/static/imgs/save.svg") 50% 50% no-repeat;
+        background-size: 14px 14px;
+        border: $global-border-width-s solid $gray-60;
+        border-radius: 3px;
+
+        @include media("<=phone") {
+          display: none;
+        }
+      }
+    }
+  }
+}

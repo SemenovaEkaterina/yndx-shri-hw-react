@@ -1,0 +1,13 @@
+@import 'scss/index';
+
+.Name {
+  display: inline-block;
+
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  &:first-letter {
+    color: $red-100;
+  }
+}

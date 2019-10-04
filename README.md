@@ -1,1 +1,0 @@
-# yndx-shri-hw-react

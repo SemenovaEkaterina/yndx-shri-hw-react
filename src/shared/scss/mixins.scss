@@ -1,0 +1,16 @@
+@import 'variables';
+
+@mixin container {
+  padding: 0 $global-spacing-xxl;
+  box-sizing: border-box;
+  max-width: $global-container-width;
+  margin: auto;
+
+  @include media("<=tablet") {
+    padding: 0 $global-spacing-l;
+  }
+
+  @include media("<=phone") {
+    padding: 0 $global-spacing-m;
+  }
+}

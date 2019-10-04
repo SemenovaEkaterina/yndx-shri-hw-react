@@ -1,0 +1,61 @@
+@import 'scss/index';
+
+.Code {
+  color: $gray-80;
+  font-size: $global-font-size-xxs;
+  line-height: $global-line-height-m;
+
+  width: 100%;
+  overflow-x: auto;
+  //background-color: $blue-30;
+
+  &:not(#{&}_diff) {
+    padding: $global-spacing-xs-h 0;
+  }
+
+  &-rows {
+    background-color: white;
+    display: table;
+    width: 100%;
+  }
+
+  &-line {
+    display: table-row;
+
+    &_type {
+      &_old {
+        background-color: transparent;
+      }
+      &_new {
+        background-color: $green-10;
+      }
+      &_deleted {
+        background-color: $red-10;
+      }
+    }
+  }
+
+  &-number {
+    display: table-cell;
+    padding: 0 $global-spacing-xxl 0 $global-spacing-xl;
+
+    width: 1px;
+
+    text-align: right;
+    white-space: nowrap;
+
+    @include media("<=phone") {
+      padding: 0 $global-spacing-s 0 $global-spacing-m;
+    }
+  }
+
+  &-text {
+    display: table-cell;
+    // Чтобы текст не уперся в край таблицы
+    padding-right: $global-spacing-xxs;
+  }
+
+  &-meta {
+    padding: $global-spacing-xxs $global-spacing-s;
+  }
+}

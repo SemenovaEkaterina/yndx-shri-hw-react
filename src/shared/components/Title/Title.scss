@@ -1,0 +1,25 @@
+@import "scss/index";
+
+.Title {
+  &-header {
+    padding-bottom: $global-spacing-s;
+
+    @include media("<=phone") {
+      padding-bottom: $global-spacing-xxs;
+    }
+  }
+
+  &-name {
+    display: inline-block;
+  }
+
+  &-branch {
+    display: inline-block;
+  }
+
+  &-body {
+    color: $black-100;
+    font-size: $global-font-size-s;
+    line-height: $global-line-height-m;
+  }
+}

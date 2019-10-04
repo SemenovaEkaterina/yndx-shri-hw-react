@@ -1,0 +1,64 @@
+@import "scss/index";
+
+$local-padding-top: 50px;
+
+.Tabs {
+  width: 100%;
+  position: relative;
+
+  @include media("<=tablet") {
+    padding-top: $local-padding-top;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $global-border-width-s;
+    background: $gray-40;
+  }
+
+  &-item {
+    display: inline-block;
+    position: relative;
+    margin-right: $global-spacing-xxl;
+    padding-bottom: $global-spacing-s;
+
+    font-size: $global-font-size-m;
+    line-height: $global-line-height-m;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    @include media("<=phone") {
+      padding-bottom: $global-spacing-s-h;
+    }
+
+    &_active {
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: $global-border-width-l;
+        background: $red-100;
+      }
+    }
+  }
+
+  &-search {
+    position: absolute;
+    bottom: $global-spacing-xs;
+    right: 0;
+
+    @include media("<=tablet") {
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "scss/index";
+
+.Typo {
+  word-break: break-word;
+
+  &_size {
+    &_default {
+      font-size: $global-font-size-s;
+      line-height: $global-line-height-m;
+    }
+
+    &_title {
+      font-size: $global-font-size-xl;
+      line-height: $global-line-height-l;
+
+      @include media("<=phone") {
+        font-size: $global-font-size-l;
+      }
+    }
+  }
+
+  &_style {
+    &_default {
+      font-family: sans-serif;
+    }
+    &_code {
+      font-family: 'PT Mono', monospace;
+    }
+  }
+
+  &_color {
+    &_default {
+      color: $black-100;
+    }
+    &_inactive {
+      color: $gray-90;
+    }
+    &_additional {
+      color: $black-30;
+    }
+    &_accent {
+      color: $blue-70;
+    }
+  }
+}

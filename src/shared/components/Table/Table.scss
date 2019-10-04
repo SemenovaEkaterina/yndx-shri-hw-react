@@ -1,0 +1,88 @@
+@import "scss/index";
+
+.Table {
+  display: table;
+  width: 100%;
+
+  &-row {
+    display: table-row;
+    position: relative;
+
+    @include media("<=tablet") {
+      display: block;
+      padding: $global-spacing-s 0;
+      border-bottom: $global-border-width-s solid $gray-40;
+
+      &_type_header {
+        display: none;
+      }
+    }
+
+    &_type_header {
+      @include media("<=tablet") {
+        display: none;
+      }
+    }
+  }
+
+  &-col {
+    display: table-cell;
+    vertical-align: middle;
+
+    border-bottom-width: $global-border-width-s;
+    border-bottom-style: solid;
+
+    padding-left: $global-spacing-xs;
+
+
+    &:last-child {
+      text-align: right;
+    }
+
+    @include media("<=tablet") {
+      display: block;
+      border-bottom: none;
+      padding-right: $global-spacing-m;
+      &:last-child {
+        text-align: left;
+      }
+    }
+  }
+  &-row_type_header &-col {
+    color: $gray-70;
+
+    border-color: $gray-40;
+
+    padding-bottom: $global-spacing-xs;
+  }
+
+  &-row_type_content &-col {
+    border-color: $gray-20;
+
+    padding-top: $global-spacing-m;
+    padding-bottom: $global-spacing-s;
+
+    @include media("<=tablet") {
+      padding: 0 0 $global-spacing-s-h;
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url("/static/imgs/hor-arrow.svg") calc(100% - #{$global-spacing-xxs}) 50% no-repeat;
+    background-size: 9px 21px;
+  }
+
+  &-empty {
+    font-size: $global-font-size-m;
+    padding: $global-spacing-l;
+    text-align: center;
+  }
+}

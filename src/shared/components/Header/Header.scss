@@ -1,0 +1,88 @@
+@import "scss/index";
+
+.Header {
+  width: 100%;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $global-border-width-s;
+    background: $gray-10;
+  }
+
+  &-content {
+    @include container;
+    width: 100%;
+  }
+
+  &-table {
+    display: table;
+  }
+
+  &-item {
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+
+    &:first-child {
+      padding-right: $global-spacing-xxxl;
+    }
+
+    &_type {
+      &_logo {
+        width: 118px;
+        height: 20px;
+        padding-top: $global-spacing-m;
+        padding-bottom: $global-spacing-l;
+
+        @include media("<=phone") {
+          padding-top: 19px;
+          padding-bottom: 21px;
+        }
+      }
+
+      &_text {
+        padding-top: $global-spacing-l;
+        padding-bottom: 18px;
+
+        font-size: $global-font-size-s;
+        line-height: $global-line-height-s;
+
+        @include media("<=phone") {
+          padding-top: $global-spacing-xl;
+        }
+      }
+    }
+
+    &_active {
+      &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        bottom: 0;
+        background: #FF4F49;
+      }
+    }
+  }
+
+  &-dropdown {
+    position: relative;
+  }
+
+  &-option {
+    padding: $global-spacing-xs 22px;
+    transition: color ease-in 200ms;
+
+    &:hover {
+      color: $gray-90;
+    }
+
+    @include media("<=phone") {
+      padding: $global-spacing-s $global-spacing-m;
+    }
+  }
+}

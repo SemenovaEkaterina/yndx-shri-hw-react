@@ -1,0 +1,19 @@
+{
+  "port": 3003,
+  "baseUrl": "/api/repos",
+  "params": {
+    "repositoryId": "repositoryId",
+    "commitHash": "commitHash",
+    "path": "path",
+    "pathToFile": "pathToFile"
+  },
+  "body": {
+    "url": "url"
+  },
+  "query": {
+    "limit": "limit",
+    "offset": "offset"
+  },
+  "githubUrl": "https://github.com/",
+  "defaultLimit": 10
+}

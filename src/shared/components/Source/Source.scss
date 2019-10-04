@@ -1,0 +1,44 @@
+@import "scss/index";
+
+$local-icon-size-s: 12px;
+$local-icon-size-m: 20px;
+
+.Source {
+  color: inherit;
+
+  &-icon {
+    display: inline-block;
+    vertical-align: middle;
+
+    height: 20px;
+
+    background: 50% 50% no-repeat;
+    background-size: contain;
+
+    color: inherit;
+
+
+    &_size {
+      &_s {
+        width: $local-icon-size-s;
+      }
+      &_m {
+        width: $local-icon-size-m;
+      }
+    }
+    &_type {
+      &_dir {
+        background-image: url('./img/dir.svg');
+      }
+    }
+  }
+
+  &-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: $global-spacing-xs;
+
+    color: inherit;
+    text-decoration: none;
+  }
+}
