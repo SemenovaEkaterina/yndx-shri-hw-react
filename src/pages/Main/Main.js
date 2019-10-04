@@ -11,7 +11,8 @@ import FilesTable from "./FilesTable";
 import FilesTitle from "./FilesTitle";
 import {FilesStatus} from "src/store/files/types";
 import routes from "src/routes";
-import { Redirect } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
+import Loader from "shared/components/Loader";
 
 export default () => {
     const {repoId, path} = useParams();
@@ -20,20 +21,24 @@ export default () => {
         dispatch(fetchFiles(repoId, path))
     }, [path]);
 
-    const itemStatus = useSelector(state => state.files.itemStatus);
     const status = useSelector(state => state.files.status);
 
     return (
         <>
-            {[status, itemStatus].includes(FilesStatus.NOT_FOUND) && <Redirect to={routes.NOT_FOUND} />}
-            <Container>
-                <Crumbs/>
-                <FilesTitle />
-                <Section size="l">
-                    <Tabs/>
-                </Section>
-                <FilesTable />
-            </Container>
+            {status === FilesStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND}/>}
+            {status === FilesStatus.LOADING && <Loader/>}
+            {status === FilesStatus.SUCCESS && (
+                <>
+                    <Container>
+                        <Crumbs/>
+                        <FilesTitle/>
+                        <Section size="l">
+                            <Tabs/>
+                        </Section>
+                        <FilesTable/>
+                    </Container>
+                </>
+            )}
         </>
     );
 };

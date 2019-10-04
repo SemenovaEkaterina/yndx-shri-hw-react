@@ -1,6 +1,6 @@
 import React from 'react';
-import {Provider} from 'react-redux'
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Provider, useSelector} from 'react-redux'
+import {Switch, Route, BrowserRouter, Redirect} from 'react-router-dom';
 import {Main, File, NotFound} from './pages';
 import Header from 'shared/components/Header';
 import routes from "./routes";
