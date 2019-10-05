@@ -9,3 +9,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /.idea
+
+# tests
+/.nyc_output
+/coverage
