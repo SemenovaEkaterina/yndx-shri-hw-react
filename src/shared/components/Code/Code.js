@@ -2,7 +2,6 @@ import React from 'react';
 import {cn} from '@bem-react/classname';
 import './Code.scss';
 import Typo from "shared/components/Typo";
-import Highlight from 'react-highlight'
 
 const code = cn('Code');
 const codeLine = cn('Code', 'line');

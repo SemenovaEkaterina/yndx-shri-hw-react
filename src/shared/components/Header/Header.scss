@@ -74,8 +74,13 @@
   }
 
   &-option {
+    display: block;
+
     padding: $global-spacing-xs 22px;
     transition: color ease-in 200ms;
+
+    text-decoration: none;
+    color: inherit;
 
     &:hover {
       color: $gray-90;

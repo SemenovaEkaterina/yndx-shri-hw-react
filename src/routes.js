@@ -3,7 +3,7 @@ export default {
 
   TREE: {
     mask: `/:repoId/tree/:path*/`,
-    create: (repoId, path) => `/${repoId}/tree/${path}`,
+    create: (repoId, path = '') => `/${repoId}` + (path ? `/tree/${path}` : ''),
   },
   BLOB: {
     mask: `/:repoId/blob/:path*/`,

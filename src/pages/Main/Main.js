@@ -9,7 +9,7 @@ import useParams from "shared/hooks/useParams";
 import Section from "shared/components/Section";
 import FilesTable from "./FilesTable";
 import FilesTitle from "./FilesTitle";
-import {FilesStatus} from "src/store/files/types";
+import {SourceStatus} from "src/store/types";
 import routes from "src/routes";
 import {Redirect} from 'react-router-dom'
 import Loader from "shared/components/Loader";
@@ -19,15 +19,15 @@ export default () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchFiles(repoId, path))
-    }, [path]);
+    }, [path, repoId]);
 
     const status = useSelector(state => state.files.status);
 
     return (
         <>
-            {status === FilesStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND}/>}
-            {status === FilesStatus.LOADING && <Loader/>}
-            {status === FilesStatus.SUCCESS && (
+            {status === SourceStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND}/>}
+            {status === SourceStatus.LOADING && <Loader/>}
+            {status === SourceStatus.SUCCESS && (
                 <>
                     <Container>
                         <Crumbs/>

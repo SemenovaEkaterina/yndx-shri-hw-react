@@ -1,4 +1,4 @@
-export const FilesStatus = Object.freeze({
+export const SourceStatus = Object.freeze({
     INITIAL: 'initial',
     LOADING: 'loading',
     ERROR: 'error',

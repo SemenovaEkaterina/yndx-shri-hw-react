@@ -6,32 +6,25 @@ const initialState = {
     status: SourceStatus.INITIAL,
 };
 
-const filesReducer = (
+const reposReducer = (
     state = initialState,
     action
 ) => {
     switch (action.type) {
-        case actionNames.LOAD_FILES: {
+        case actionNames.LOAD_REPOS: {
             return Object.assign({}, state, {
                 status: SourceStatus.LOADING,
             });
         }
-        case actionNames.LOAD_FILES_RESULT: {
+        case actionNames.LOAD_REPOS_RESULT: {
             return Object.assign({}, state, {
                 status: action.status,
                 items: action.items,
-                last: action.last,
             });
         }
-        case actionNames.LOAD_FILE: {
+        case actionNames.SET_REPO: {
             return Object.assign({}, state, {
-                itemStatus: SourceStatus.LOADING,
-            });
-        }
-        case actionNames.LOAD_FILE_RESULT: {
-            return Object.assign({}, state, {
-                itemStatus: action.status,
-                item: action.item,
+                item: action.key,
             });
         }
         default: {
@@ -40,4 +33,4 @@ const filesReducer = (
     }
 };
 
-export default filesReducer;
+export default reposReducer;

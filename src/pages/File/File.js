@@ -7,7 +7,7 @@ import {fetchFile} from "src/store/files/actions";
 import useParams from "shared/hooks/useParams";
 import Code from "shared/components/Code";
 import Title from "shared/components/Title";
-import {FilesStatus} from "src/store/files/types";
+import {SourceStatus} from "src/store/types";
 import routes from "src/routes";
 import {Redirect} from "react-router-dom";
 import Loader from "shared/components/Loader/Loader";
@@ -24,9 +24,9 @@ export default () => {
 
     return (
         <>
-            {status === FilesStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND}/>}
-            {status === FilesStatus.LOADING && <Loader/>}
-            {status === FilesStatus.SUCCESS && (
+            {status === SourceStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND}/>}
+            {status === SourceStatus.LOADING && <Loader/>}
+            {status === SourceStatus.SUCCESS && (
                 <>
                     <Container>
                         <Crumbs/>

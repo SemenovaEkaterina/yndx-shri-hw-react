@@ -1,5 +1,5 @@
 import config from 'src/config';
-import {FilesStatus} from "src/store/files/types";
+import {SourceStatus} from "src/store/types";
 
 export const actionNames = {
     LOAD_FILES: 'files/load',
@@ -36,10 +36,10 @@ export const fetchFiles = (repoId, path) => async (dispatch, getState) => {
     const url = path ? `${base}/tree/master/${path}` : base;
     const response = await fetch(url);
     if (response.status === 404) {
-        dispatch(resultLoadFiles(FilesStatus.NOT_FOUND));
+        dispatch(resultLoadFiles(SourceStatus.NOT_FOUND));
     } else {
         const {list, last} = await response.json();
-        dispatch(resultLoadFiles(FilesStatus.SUCCESS, list, last));
+        dispatch(resultLoadFiles(SourceStatus.SUCCESS, list, last));
     }
 };
 
@@ -48,11 +48,11 @@ export const fetchFile = (repoId, path) => async (dispatch, getState) => {
     const url = `${config.apiUrl}repos/${repoId}/blob/master/${path}`;
     const response = await fetch(url);
     if (response.status === 404) {
-        dispatch(resultLoadFile(FilesStatus.NOT_FOUND));
+        dispatch(resultLoadFile(SourceStatus.NOT_FOUND));
     } else {
         const item = (await response.text());
 
-        dispatch(resultLoadFile(FilesStatus.SUCCESS, item));
+        dispatch(resultLoadFile(SourceStatus.SUCCESS, item));
     }
 };
 
