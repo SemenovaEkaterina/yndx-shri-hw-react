@@ -1,8 +1,23 @@
 const assert = require('assert');
+const fetch = require('node-fetch');
+const { URLSearchParams } = require('url');
 
 const LOAD_TIMEOUT = 5000;
 
 module.exports = (hermione, opts) => {
+    hermione.on(hermione.events.SESSION_START, async () => {
+        // Инициализация репозиториев для проверки
+
+        const addRepo = (url) => {
+            const params = new URLSearchParams();
+            params.append('url', url);
+            // Конфиг
+            fetch('http://localhost:3003/api/repos/', {method: 'post', body: params});
+        };
+        // Конфиг
+        addRepo('https://github.com/SemenovaEkaterina/linter');
+        addRepo('https://github.com/SemenovaEkaterina/promise-polyfill');
+    });
     hermione.on(hermione.events.NEW_BROWSER, (browser) => {
         browser.addCommand('waitElement', (selector) => {
             return browser.waitForExist(selector, LOAD_TIMEOUT).$(selector);

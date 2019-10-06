@@ -1,4 +1,4 @@
 {
   "port": 3001,
-  "apiUrl": "http://localhost:3003/api/"
+  "apiUrl": "/api/"
 }

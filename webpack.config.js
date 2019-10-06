@@ -44,9 +44,29 @@ module.exports = {
             template: "./src/index.html"
         })
     ],
+    optimization: {
+        splitChunks: {
+            chunks: "async",
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
+    },
     devServer: {
         historyApiFallback: {
             disableDotRule: true
+        },
+        host: '0.0.0.0',
+        proxy: {
+            '/api': 'http://localhost:3003'
         }
     },
     resolve: {

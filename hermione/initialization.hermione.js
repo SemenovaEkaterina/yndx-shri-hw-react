@@ -1,9 +1,6 @@
 const assert = require('assert');
 
-const LOAD_TIMEOUT = 5000;
-
 describe('Инициалиация', () => {
-    // Добавить хоть одну репу
     it('Автоматический выбор репозитория при переходе на /', function () {
         return this.browser.url('/').assertExists('.Title-name', 'Репозиторий выбран');
     });

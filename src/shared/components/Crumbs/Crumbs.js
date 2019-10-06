@@ -12,8 +12,6 @@ export default () => {
     const {repoId} = useParams();
     const path = useSelector(state => state.files.path) || [];
 
-    console.log(path);
-
     const items = [
         {
             title: repoId,

@@ -16,7 +16,6 @@ export default () => {
     const current = useSelector(state => state.repos.item);
     const dispatch = useDispatch();
     const handleCheckRepo = useCallback((key) => {
-        dispatch(resultLoadFiles(SourceStatus.INITIAL));
         dispatch(setRepo(key));
     }, []);
 

@@ -15,9 +15,10 @@ module.exports = async function (req, res) {
     const _checkExisting = this.checkExisting || checkExisting;
     const _createUtil = this.createUtil || createUtil;
     const _rootDirPath = this.rootDirPath || rootDirPath;
+    console.log("REQUEST", req.body);
 
     const {
-        [body.url]: url,
+        [body.url]: url = '',
     } = req.body;
 
     const repoName = url.replace(config.githubUrl, '').split('/')[1];
