@@ -4,6 +4,7 @@
   "dependencies": {
     "@bem-react/classname": "^1.5.4",
     "cors": "^2.8.5",
+    "hermione-custom-commands": "file:hermione-custom-commands",
     "include-media": "^1.4.9",
     "moment": "^2.24.0",
     "react": "^16.10.1",
@@ -17,7 +18,8 @@
     "api-prod": "node api/src/server.js",
     "start": "webpack-dev-server --mode development --open --hot",
     "test": "mocha --recursive api/tests",
-    "hermione": "./node_modules/.bin/hermione hermione"
+    "hermione": "./node_modules/.bin/hermione hermione",
+    "hermione-gui": "./node_modules/.bin/hermione gui hermione"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -29,6 +31,7 @@
     "chai-as-promised": "^7.1.1",
     "css-loader": "^3.2.0",
     "hermione": "^2.12.6",
+    "html-reporter": "^4.13.1",
     "html-webpack-plugin": "^3.2.0",
     "mocha": "^6.2.1",
     "node-sass": "^4.12.0",

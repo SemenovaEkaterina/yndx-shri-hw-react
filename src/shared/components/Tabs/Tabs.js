@@ -5,10 +5,12 @@ import './Tabs.scss';
 
 const tabs = cn('Tabs');
 
-export default () => (
+export default ({items = [], selected}) => (
     <div className={tabs()}>
-        <Typo className={tabs('item', {active: true})}>
-            FILES
-        </Typo>
+        {items.map(item => (
+            <Typo className={tabs('item', {active: item === selected})}>
+                {item}
+            </Typo>
+        ))}
     </div>
 );

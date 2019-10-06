@@ -22,6 +22,7 @@ export default () => {
     }, [path, repoId]);
 
     const status = useSelector(state => state.files.status);
+    const current = useSelector(state => state.repos.item);
 
     return (
         <>
@@ -29,14 +30,17 @@ export default () => {
             {status === SourceStatus.LOADING && <Loader/>}
             {status === SourceStatus.SUCCESS && (
                 <>
-                    <Container>
-                        <Crumbs/>
-                        <FilesTitle/>
-                        <Section size="l">
-                            <Tabs/>
-                        </Section>
-                        <FilesTable/>
-                    </Container>
+                    {current !== repoId && <Redirect to={routes.TREE.create(current)}/>}
+                    <div className="Main">
+                        <Container>
+                            <Crumbs/>
+                            <FilesTitle/>
+                            <Section size="l">
+                                <Tabs items={['files']} selected={'files'}/>
+                            </Section>
+                            <FilesTable/>
+                        </Container>
+                    </div>
                 </>
             )}
         </>

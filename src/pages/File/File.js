@@ -11,6 +11,8 @@ import {SourceStatus} from "src/store/types";
 import routes from "src/routes";
 import {Redirect} from "react-router-dom";
 import Loader from "shared/components/Loader/Loader";
+import Section from "shared/components/Section/Section";
+import Tabs from "shared/components/Tabs/Tabs";
 
 export default () => {
     const dispatch = useDispatch();
@@ -19,8 +21,10 @@ export default () => {
         dispatch(fetchFile(repoId, path))
     }, [path]);
 
+
     const file = useSelector(state => state.files.item);
-    const status = useSelector(state => state.file.status);
+    const status = useSelector(state => state.files.itemStatus);
+    const name = useSelector(state => state.files.name);
 
     return (
         <>
@@ -30,12 +34,19 @@ export default () => {
                 <>
                     <Container>
                         <Crumbs/>
-                        <Title/>
+                        <Section size="l">
+                            <Tabs items={['details']} selected={'details'}/>
+                        </Section>
+                        <Section size="s">
+                            <Title name={name}/>
+                        </Section>
                     </Container>
                     <Container full>
-                        <FileContainer>
-                            <Code data={file}/>
-                        </FileContainer>
+                        <Section size="m" mobile="s">
+                            <FileContainer name={name}>
+                                <Code data={file}/>
+                            </FileContainer>
+                        </Section>
                     </Container>
                 </>
             )}

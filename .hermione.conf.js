@@ -8,5 +8,11 @@ module.exports = {
                 browserName: "chrome"
             }
         }
+    },
+    plugins: {
+        'html-reporter/hermione': {
+            path: 'hermione-html-reporter'
+        },
+        'hermione-custom-commands': true
     }
 };

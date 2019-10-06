@@ -5,6 +5,8 @@ import Logo from "shared/components/Logo";
 import Dropdown from "shared/components/Dropdown";
 import {useDispatch, useSelector} from "react-redux";
 import {setRepo} from "src/store/repos/actions";
+import {SourceStatus} from "src/store/types";
+import {resultLoadFiles} from "src/store/files/actions";
 
 const header = cn('Header');
 const headerItem = cn('Header', 'item');
@@ -14,6 +16,7 @@ export default () => {
     const current = useSelector(state => state.repos.item);
     const dispatch = useDispatch();
     const handleCheckRepo = useCallback((key) => {
+        dispatch(resultLoadFiles(SourceStatus.INITIAL));
         dispatch(setRepo(key));
     }, []);
 
@@ -29,10 +32,10 @@ export default () => {
                     <a className={headerItem({type: 'logo'})}>
                         <Logo/>
                     </a>
-                    {!!repos.length && current && (
+                    {!!repos.length && (
                         <div className={headerItem({type: 'text', active: true})}>
                             <Dropdown items={options} onCheck={handleCheckRepo}>
-                                <span className={header('dropdown')}>{current}</span>
+                                <span className={header('dropdown')}>{current || 'Select...'}</span>
                             </Dropdown>
                         </div>
                     )}

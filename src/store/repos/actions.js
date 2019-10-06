@@ -36,9 +36,6 @@ export const fetchRepos = () => async (dispatch, getState) => {
     } else {
         const {repos} = await response.json();
         dispatch(resultLoadRepos(SourceStatus.SUCCESS, repos));
-        if (repos.length > 0) {
-            dispatch(setRepo(repos[0]));
-        }
     }
 };
 

@@ -1,4 +1,5 @@
 export default {
+  INDEX: '/',
   ROOT: '/:repoId',
 
   TREE: {
@@ -10,5 +11,5 @@ export default {
     create: (repoId, path) => `/${repoId}/blob/${path}`,
   },
 
-  NOT_FOUND: '',
+  NOT_FOUND: '/404',
 };

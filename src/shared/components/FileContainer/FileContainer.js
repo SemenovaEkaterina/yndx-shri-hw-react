@@ -4,15 +4,12 @@ import './FileContainer.scss';
 
 const fileContainer = cn('FileContainer');
 
-export default ({children}) => (
+export default ({children, name}) => (
     <div className={fileContainer()}>
         <div className={fileContainer('header')}>
             <div className={fileContainer('info')}>
                 <div className={fileContainer('icon')} />
-                ya.make <span className="FileContainer-size">(4 347 bytes)</span>
-            </div>
-            <div className={fileContainer('actions')}>
-                <div className={fileContainer('link', {type: 'save'})} />
+                {name}
             </div>
         </div>
         {children}

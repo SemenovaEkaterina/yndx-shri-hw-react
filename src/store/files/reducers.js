@@ -32,7 +32,13 @@ const filesReducer = (
             return Object.assign({}, state, {
                 itemStatus: action.status,
                 item: action.item,
+                name: action.name,
             });
+        }
+        case actionNames.SET_PATH: {
+            return Object.assign({}, state, {
+                path: action.path.split('/').filter(item => item),
+            })
         }
         default: {
             return state;

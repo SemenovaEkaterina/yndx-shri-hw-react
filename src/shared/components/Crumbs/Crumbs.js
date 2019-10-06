@@ -4,19 +4,24 @@ import './Crumbs.scss';
 import useParams from "shared/hooks/useParams";
 import routes from "src/routes";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const crumbs = cn('Crumbs');
 
 export default () => {
-    const {repoId, path = ''} = useParams();
+    const {repoId} = useParams();
+    const path = useSelector(state => state.files.path) || [];
+
+    console.log(path);
+
     const items = [
         {
             title: repoId,
             path: `/${repoId}`,
         },
-    ].concat(path.split('/').filter(item => item).reduce((acc, cur, i) => {
+    ].concat(path.reduce((acc, cur, i) => {
         acc[i] = {
-            path: !i ? cur : routes.TREE.create(repoId,`${acc[i - 1].path}/${cur}`),
+            path: routes.TREE.create(repoId,`${!i ? cur : (acc[i - 1].path + '/' + cur)}`),
             title: cur,
         };
 
@@ -25,13 +30,16 @@ export default () => {
 
     return (
         <div className={crumbs()}>
-            {items.map(item => (
-                <Link
-                    to={item.path}
-                    className={crumbs('item')}>
-                    {item.title}
-                </Link>
-            ))}
+            {items.map((item, i) => {
+                const Component = i !== items.length - 1 ? Link : 'div';
+                return (
+                    <Component
+                        to={item.path}
+                        className={crumbs('item')}>
+                        {item.title}
+                    </Component>
+                )
+            })}
         </div>
     )
 };

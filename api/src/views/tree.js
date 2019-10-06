@@ -37,14 +37,15 @@ module.exports = async function (req, res) {
 
     const scriptsPath = path.join(__dirname, '../scripts/files.sh');
     const {stdout} = await _execFile(scriptsPath, [], {cwd: repoPath});
+
     const out = [...new Set(stdout.split('\n')
         .filter(item => item && item.startsWith(relativePath || '')).map(item => removePrefix(item, relativePath))
         .filter(item => item.split('/').length === 1))];
 
     const list = out.map(item => {
-        const [name, time, commit, message, author] = item.split('|');
+        const [name, time, commit, message, author, type] = item.split('|');
         return {
-            name, time, commit, message, author
+            name, time, commit, message, author, type
         }
     });
     const lastCommit = await _callGit(execFile, ['log', -1, '--pretty=format:%h|%cn|%at|%s', 'HEAD', `--`, relativePath || '.'], repoPath);

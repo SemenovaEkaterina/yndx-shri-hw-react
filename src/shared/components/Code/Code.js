@@ -14,7 +14,6 @@ export default ({data = ''}) => (
                     <div className={code('line')}>
                         <div className={code('number')}>{i + 1}</div>
                         <div className={codeLine('text')}>
-                            {/*<Highlight>{item}</Highlight>*/}
                             {item}
                         </div>
                     </div>

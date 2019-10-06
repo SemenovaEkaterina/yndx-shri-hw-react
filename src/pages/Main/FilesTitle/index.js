@@ -23,7 +23,7 @@ export default () => {
 
     return (
         <Section size="s">
-            <Title name={name} description={description}/>
+            {name && description && <Title name={name} description={description}/>}
         </Section>
     )
 }

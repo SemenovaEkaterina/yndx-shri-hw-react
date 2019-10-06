@@ -7,6 +7,10 @@
     @include media("<=phone") {
       padding-bottom: $global-spacing-xxs;
     }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
   }
 
   &-name {

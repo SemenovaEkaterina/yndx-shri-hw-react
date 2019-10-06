@@ -44,5 +44,7 @@ module.exports = async function (req, res) {
         throw e;
     }
 
+    res.setHeader('Content-Disposition', 'attachment; filename=' + relativePath.split('/').slice(-1));
+    res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
     _spawn('git', ['show', revFilePath], {cwd: repoPath}).stdout.pipe(res);
 };

@@ -11,8 +11,10 @@ import Typo from "shared/components/Typo/Typo";
 
 export default () => {
     const {repoId, path} = useParams();
-    const getLink = (name) => {
-        const route = name.indexOf('.') > 0 ? routes.BLOB : routes.TREE;
+    const getLink = (item) => {
+        const name = item.name;
+        const type = item.type;
+        const route = type === 'blob' ? routes.BLOB : routes.TREE;
         return route.create(repoId, `${path ? path + '/' : ''}${name}`)
     };
 
@@ -46,8 +48,8 @@ export default () => {
             commit: <Typo color="accent">{item.commit}</Typo>,
             name: (
                 <Source
-                    to={getLink(item.name)}
-                    type={SourceType.DIR}>{item.name}
+                    to={getLink(item)}
+                    type={item.type === 'tree' ? SourceType.DIR : SourceType.FILE}>{item.name}
                 </Source>
             ),
             author: <Name>{item.author}</Name>

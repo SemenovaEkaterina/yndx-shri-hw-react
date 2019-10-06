@@ -1,0 +1,22 @@
+@import "scss/index";
+
+.NotFound {
+  $local-height: 300px;
+
+  text-align: center;
+  font-size: $global-font-size-xl;
+
+  height: $local-height;
+  line-height: $local-height;
+
+  &-code {
+    display: inline-block;
+    color: $red-80;
+    padding-left: $global-spacing-l;
+  }
+
+  &-text {
+    display: inline-block;
+    color: $black-10;
+  }
+}
