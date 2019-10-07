@@ -18,8 +18,4 @@ describe('Навигация', () => {
 
         this.browser.assertExists('.Table', 'Таблица появилась');
     });
-
-    // it('Работает переход с 404 на репозиторий', async function () {
-    //
-    // });
 });

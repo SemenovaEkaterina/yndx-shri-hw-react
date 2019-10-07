@@ -5,7 +5,6 @@ describe('Инициалиация', () => {
         return this.browser.url('/').assertExists('.Title-name', 'Репозиторий выбран');
     });
 
-    // Удалять репу прежде, чем чекать
     it('404 на несуществующий репозиторий', function () {
         return this.browser.url('/trash').assertExists('.NotFound', 'Страница 404 показана').assertView('notFound', 'body');
     });

@@ -7,12 +7,6 @@ describe('Хлебные крошки', () => {
         this.browser.assertExists(`.Crumbs-item=${source}`, 'Крошка появилась');
     });
 
-    it('Крошка текущего ресурса не обновляет страницу', async function () {
-        // const source = await this.browser.selectSource('dir');
-        //
-        // this.browser.assertExists(`.Crumbs-item=${source}`, 'Крошка появилась');
-    });
-
     it('При переходе по крошке открывается содержимое', async function () {
         await this.browser.selectSource('dir');
 

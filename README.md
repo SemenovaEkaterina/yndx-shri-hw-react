@@ -1,5 +1,5 @@
 # [Домашнее задание «React»](#react)
-# [Домашнее задание «Тестирование»](#test)
+# [Домашнее задание «Тестирование»](#tests)
 
 # React
 
@@ -38,6 +38,8 @@
 
 ### Запуск:
 
+`npm run test`
+
 ### Логические блоки API:
 
 * #### Утилиты
@@ -71,4 +73,12 @@
 
 Selenium-standalone установлен глобально
 
+### Запуск:
+
 `selenium-standalone start`
+
+`npm run api-prod <dir>`
+
+`npm run start-csr`
+
+`npm run hermione`
