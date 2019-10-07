@@ -1,12 +1,11 @@
-import React, {useEffect, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {cn} from '@bem-react/classname';
 import './Header.scss';
 import Logo from "shared/components/Logo";
 import Dropdown from "shared/components/Dropdown";
 import {useDispatch, useSelector} from "react-redux";
 import {setRepo} from "src/store/repos/actions";
-import {SourceStatus} from "src/store/types";
-import {resultLoadFiles} from "src/store/files/actions";
+import {fetchFiles} from "src/store/files/actions";
 
 const header = cn('Header');
 const headerItem = cn('Header', 'item');
@@ -16,10 +15,11 @@ export default () => {
     const current = useSelector(state => state.repos.item);
     const dispatch = useDispatch();
     const handleCheckRepo = useCallback((key) => {
+        dispatch(fetchFiles(key));
         dispatch(setRepo(key));
     }, []);
 
-    const options = repos.map(item => ({
+    const options = (repos || []).map(item => ({
         key: item,
         content: <div className={header('option')}>{item}</div>
     }));

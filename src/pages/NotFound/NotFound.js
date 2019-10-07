@@ -3,7 +3,7 @@ import {cn} from '@bem-react/classname';
 import './NotFound.scss';
 import routes from "src/routes";
 import {useSelector} from "react-redux";
-import Redirect from "react-router-dom/es/Redirect";
+import {Redirect} from "react-router-dom";
 
 const notFound = cn('NotFound');
 

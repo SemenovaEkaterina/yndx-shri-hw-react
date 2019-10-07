@@ -1,13 +1,20 @@
-const path = require("path");
+const defaultConfig = require('./common.webpack.config');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const merge = require('webpack-merge');
+const path = require('path');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
-    entry: "./src/index.js",
+module.exports = merge(defaultConfig, {
+    entry: {
+        main: './src/client/index.js',
+    },
     output: {
-        path: path.join(__dirname, "/dist"),
-        filename: "index_bundle.js",
+        path: path.join(__dirname, "../../dist"),
+        filename: "main.js",
         publicPath: "/",
     },
+    mode: "development",
     module: {
         rules: [
             {
@@ -19,7 +26,16 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ["style-loader", "css-loader", "sass-loader"]
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../',
+                            hmr: process.env.NODE_ENV === 'development',
+                        },
+                    },
+                    "css-loader", "sass-loader"
+                ]
             },
             {
                 test: /\.svg$/,
@@ -41,8 +57,16 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
-        })
+            template: "./src/client/index.html"
+        }),
+        new WebpackAssetsManifest({
+            output: path.join(__dirname, "../../dist", 'manifest.json'),
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css',
+            ignoreOrder: false,
+        }),
     ],
     optimization: {
         splitChunks: {
@@ -64,16 +88,5 @@ module.exports = {
         historyApiFallback: {
             disableDotRule: true
         },
-        host: '0.0.0.0',
-        proxy: {
-            '/api': 'http://localhost:3003'
-        }
     },
-    resolve: {
-        alias: {
-            shared: path.resolve(__dirname, 'src', 'shared'),
-            src: path.resolve(__dirname, 'src'),
-            scss: path.resolve(__dirname, 'src', 'shared', 'scss')
-        }
-    }
-};
+});

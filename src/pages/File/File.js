@@ -15,20 +15,29 @@ import Section from "shared/components/Section/Section";
 import Tabs from "shared/components/Tabs/Tabs";
 
 export default () => {
+    // TODO часть с вызовом loadData для текущего рута частично дублируется на страницах -> сделать универсально
     const dispatch = useDispatch();
     const {repoId, path} = useParams();
+    const state = useSelector(state => state);
+    useEffect(() => {
+        if (state.files.itemStatus === SourceStatus.INITIAL) {
+            routes.BLOB.loadData(dispatch, () => state, {repoId, path});
+        }
+    }, []);
+
     useEffect(() => {
         dispatch(fetchFile(repoId, path))
     }, [path]);
 
-
     const file = useSelector(state => state.files.item);
     const status = useSelector(state => state.files.itemStatus);
     const name = useSelector(state => state.files.name);
+    const current = useSelector(state => state.repos.item);
 
     return (
         <>
-            {status === SourceStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND}/>}
+            {status === SourceStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND.create()}/>}
+            {repoId !== current && <Redirect to={routes.TREE.create(repoId)}/>}
             {status === SourceStatus.LOADING && <Loader/>}
             {status === SourceStatus.SUCCESS && (
                 <>

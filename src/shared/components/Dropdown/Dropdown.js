@@ -15,7 +15,7 @@ export default ({children, items = [], onCheck}) => {
         },
         [],
     );
-
+    // TODO blurable wrapper
     return (
         <div className={dropdown({opened})}>
             {children}

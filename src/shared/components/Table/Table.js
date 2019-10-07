@@ -14,9 +14,9 @@ export default props => {
             <div className={tableRow({type: 'header'})}>
                 {names.map((item, i) => <div className={tableCol()} key={i}>{item.title}</div>)}
             </div>
-            {values.map(value => (
-                <div className={tableRow({type: 'content'})}>
-                    {names.map(item => <div className={tableCol()}>{value[item.key]}</div>)}
+            {values.map((value, i) => (
+                <div key={i} className={tableRow({type: 'content'})}>
+                    {names.map((item, i) => <div key={i} className={tableCol()}>{value[item.key]}</div>)}
                 </div>
             ))}
         </div>

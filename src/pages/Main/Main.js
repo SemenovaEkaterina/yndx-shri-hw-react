@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 import Container from "shared/components/Container";
 import Crumbs from "shared/components/Crumbs";
 import Tabs from "shared/components/Tabs";
@@ -15,10 +15,25 @@ import {Redirect} from 'react-router-dom'
 import Loader from "shared/components/Loader";
 
 export default () => {
-    const {repoId, path} = useParams();
+    // TODO часть с вызовом loadData для текущего рута частично дублируется на страницах -> сделать универсально
     const dispatch = useDispatch();
+    const {repoId, path} = useParams();
+    const state = useSelector(state => state);
     useEffect(() => {
-        dispatch(fetchFiles(repoId, path))
+        if (state.files.status === SourceStatus.INITIAL) {
+            console.log("GET1");
+            routes.TREE.loadData(dispatch, () => state, {repoId, path});
+        }
+    }, []);
+
+    const isInitialMount = useRef(true);
+
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {
+            dispatch(fetchFiles(repoId, path))
+        }
     }, [path, repoId]);
 
     const status = useSelector(state => state.files.status);
@@ -26,7 +41,7 @@ export default () => {
 
     return (
         <>
-            {status === SourceStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND}/>}
+            {status === SourceStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND.create()}/>}
             {status === SourceStatus.LOADING && <Loader/>}
             {status === SourceStatus.SUCCESS && (
                 <>

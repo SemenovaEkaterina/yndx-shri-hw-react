@@ -19,7 +19,7 @@ export default () => {
         },
     ].concat(path.reduce((acc, cur, i) => {
         acc[i] = {
-            path: routes.TREE.create(repoId,`${!i ? cur : (acc[i - 1].path + '/' + cur)}`),
+            path: !i ? routes.TREE.create(repoId, cur) : `${acc[i - 1].path}/${cur}`,
             title: cur,
         };
 
@@ -32,6 +32,7 @@ export default () => {
                 const Component = i !== items.length - 1 ? Link : 'div';
                 return (
                     <Component
+                        key={item}
                         to={item.path}
                         className={crumbs('item')}>
                         {item.title}

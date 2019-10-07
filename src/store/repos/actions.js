@@ -1,5 +1,5 @@
-import config from 'src/config';
 import {SourceStatus} from "src/store/types";
+import apiUrls from "../apiUrls";
 
 export const actionNames = {
     LOAD_REPOS: 'repos/load',
@@ -22,19 +22,25 @@ export const setRepo = (key) => ({
     key,
 });
 
-export const fetchRepos = () => async (dispatch, getState) => {
+export const fetchRepos = (repoId = '') => async (dispatch, getState) => {
     const state = getState();
     if (state.repos.status !== SourceStatus.INITIAL) {
         return;
     }
 
     dispatch(loadRepos());
-    const url = `${config.apiUrl}repos`;
+    const url = apiUrls.repos();
     const response = await fetch(url);
     if (response.status === 404) {
         dispatch(resultLoadRepos(SourceStatus.NOT_FOUND));
     } else {
         const {repos} = await response.json();
+        if (repos.indexOf(repoId) !== -1) {
+            dispatch(setRepo(repoId));
+        }
+        if (!repoId) {
+            dispatch(setRepo(repos[0]));
+        }
         dispatch(resultLoadRepos(SourceStatus.SUCCESS, repos));
     }
 };

@@ -8,7 +8,7 @@ const tabs = cn('Tabs');
 export default ({items = [], selected}) => (
     <div className={tabs()}>
         {items.map(item => (
-            <Typo className={tabs('item', {active: item === selected})}>
+            <Typo key={item} className={tabs('item', {active: item === selected})}>
                 {item}
             </Typo>
         ))}

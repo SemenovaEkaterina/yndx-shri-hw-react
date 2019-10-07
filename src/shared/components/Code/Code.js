@@ -11,7 +11,7 @@ export default ({data = ''}) => (
         <div className={code()}>
             <div className={code('rows')}>
                 {data.split('\n').filter(item => item).map((item, i) => (
-                    <div className={code('line')}>
+                    <div className={code('line')} key={i}>
                         <div className={code('number')}>{i + 1}</div>
                         <div className={codeLine('text')}>
                             {item}

@@ -1,6 +1,6 @@
-import config from 'src/config';
 import {SourceStatus} from "src/store/types";
 import {setRepo} from "src/store/repos/actions";
+import apiUrls from "../apiUrls";
 
 export const actionNames = {
     LOAD_FILES: 'files/load',
@@ -38,11 +38,9 @@ export const setPath = (path = '') => ({
     path,
 });
 
-export const fetchFiles = (repoId, path) => async (dispatch, getState) => {
+export const fetchFiles = (repoId, path) => async (dispatch) => {
     dispatch(loadFiles());
-    const base = `${config.apiUrl}repos/${repoId}`;
-    const url = path ? `${base}/tree/master/${path}` : base;
-    const response = await fetch(url);
+    const response = await fetch(apiUrls.tree(repoId, path));
     if (response.status === 404) {
         dispatch(resultLoadFiles(SourceStatus.NOT_FOUND));
     } else {
@@ -55,8 +53,7 @@ export const fetchFiles = (repoId, path) => async (dispatch, getState) => {
 
 export const fetchFile = (repoId, path) => async (dispatch, getState) => {
     dispatch(loadFile());
-    const url = `${config.apiUrl}repos/${repoId}/blob/master/${path}`;
-    const response = await fetch(url);
+    const response = await fetch(apiUrls.blob(repoId, path));
     if (response.status === 404) {
         dispatch(resultLoadFile(SourceStatus.NOT_FOUND));
     } else {
