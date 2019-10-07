@@ -88,5 +88,8 @@ module.exports = merge(defaultConfig, {
         historyApiFallback: {
             disableDotRule: true
         },
+        proxy: {
+            '/api': 'http://localhost:3003'
+        }
     },
 });

@@ -11,6 +11,7 @@ import routes from "../routes";
 import {createStore} from "redux";
 import reducer from '../store';
 import fetch from 'node-fetch';
+var request = require('request');
 
 global.fetch = fetch;
 const DEFAULT_JS = 'main.js';
@@ -60,6 +61,11 @@ const view = async (req, res) => {
 
     res.send('<!DOCTYPE html>' + content).end();
 };
+
+app.get('/api/*', function(req,res) {
+    var newurl = `http://localhost:3003${req.url}`;
+    request(newurl).pipe(res);
+});
 
 // Исключить index.html из статики
 app.get('/', view);
