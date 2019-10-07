@@ -10,21 +10,21 @@ const crumbs = cn('Crumbs');
 
 export default () => {
     const {repoId} = useParams();
-    const path = useSelector(state => state.files.path) || [];
+    const path = useSelector(state => state.files.path);
 
     const items = [
         {
             title: repoId,
             path: `/${repoId}`,
         },
-    ].concat(path.reduce((acc, cur, i) => {
+    ].concat(path ? path.reduce((acc, cur, i) => {
         acc[i] = {
             path: !i ? routes.TREE.create(repoId, cur) : `${acc[i - 1].path}/${cur}`,
             title: cur,
         };
 
         return acc;
-    }, []));
+    }, []) : []);
 
     return (
         <div className={crumbs()}>
@@ -32,7 +32,6 @@ export default () => {
                 const Component = i !== items.length - 1 ? Link : 'div';
                 return (
                     <Component
-                        key={item}
                         to={item.path}
                         className={crumbs('item')}>
                         {item.title}

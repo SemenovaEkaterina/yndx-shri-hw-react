@@ -4,7 +4,7 @@ import {useEffect, useRef} from 'react';
 import Container from "shared/components/Container";
 import Crumbs from "shared/components/Crumbs";
 import Tabs from "shared/components/Tabs";
-import {fetchFiles} from "../../store/files/actions";
+import {fetchFiles, setPath} from "../../store/files/actions";
 import useParams from "shared/hooks/useParams";
 import Section from "shared/components/Section";
 import FilesTable from "./FilesTable";
@@ -21,8 +21,9 @@ export default () => {
     const state = useSelector(state => state);
     useEffect(() => {
         if (state.files.status === SourceStatus.INITIAL) {
-            console.log("GET1");
             routes.TREE.loadData(dispatch, () => state, {repoId, path});
+        } else {
+            dispatch(setPath(path));
         }
     }, []);
 
