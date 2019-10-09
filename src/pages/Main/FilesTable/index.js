@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import Table from "shared/components/Table/Table";
-import Section from "shared/components/Section/Section";
+import Section, {SectionSize} from "shared/components/Section/Section";
 import Source from "shared/components/Source/Source";
 import {SourceType} from "shared/components/Source";
 import Name from "shared/components/Name/Name";
 import {useSelector} from "react-redux";
 import routes from "src/routes";
 import useParams from "shared/hooks/useParams";
-import Typo from "shared/components/Typo/Typo";
+import Typo, {TypoColor} from "shared/components/Typo";
 
 export default () => {
     const {repoId, path} = useParams();
@@ -45,19 +45,19 @@ export default () => {
         ],
         values: (files || []).map(item => ({
             ...item,
-            commit: <Typo color="accent">{item.commit}</Typo>,
+            author: <Name>{item.author}</Name>,
+            commit: <Typo color={TypoColor.ACCENT}>{item.commit}</Typo>,
             name: (
                 <Source
                     to={getLink(item)}
                     type={item.type === 'tree' ? SourceType.DIR : SourceType.FILE}>{item.name}
                 </Source>
             ),
-            author: <Name>{item.author}</Name>
-        }))
+        })),
     };
 
     return (
-        <Section size="m" mobile="s">
+        <Section size={SectionSize.M} mobile={SectionSize.S}>
             <Table data={table}/>
         </Section>
     );

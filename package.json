@@ -11,6 +11,9 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
     "@bem-react/classname": "^1.5.4",
+    "@types/react": "^16.9.5",
+    "@types/react-router": "^5.1.1",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "concurrently": "^4.1.2",
     "cors": "^2.8.5",
@@ -35,6 +38,7 @@
     "redux-thunk": "^2.3.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
+    "typescript": "^3.6.3",
     "url-loader": "^2.1.0",
     "webpack": "^4.41.0",
     "webpack-assets-manifest": "^3.1.1",
@@ -47,7 +51,6 @@
     "test": "mocha --recursive api/tests",
     "hermione": "./node_modules/.bin/hermione hermione",
     "hermione-gui": "./node_modules/.bin/hermione gui hermione",
-
     "start-server": "nodemon ./dist/server.js",
     "build-server": "node ./dist/server.js",
     "watch-ssr": "webpack --config src/configs/server.webpack.config.js --watch",
@@ -67,7 +70,8 @@
     "mocha": "^6.2.1",
     "nyc": "^14.1.1",
     "sinon": "^7.5.0",
-    "sinon-chai": "^3.3.0"
+    "sinon-chai": "^3.3.0",
+    "tslint": "^5.20.0"
   },
   "engines": {
     "node": "12"

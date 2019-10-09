@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from "shared/components/Title/Title";
-import Section from "shared/components/Section/Section";
+import Section, {SectionSize} from "shared/components/Section/Section";
 import Name from "shared/components/Name/Name";
 import {useSelector} from "react-redux";
 import useParams from "shared/hooks/useParams";
@@ -22,8 +22,8 @@ export default () => {
     );
 
     return (
-        <Section size="s">
+        <Section size={SectionSize.S}>
             {name && description && <Title name={name} description={description}/>}
         </Section>
-    )
-}
+    );
+};
