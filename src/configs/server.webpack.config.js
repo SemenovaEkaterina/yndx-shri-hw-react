@@ -4,31 +4,24 @@ const path = require('path');
 
 module.exports = merge(defaultConfig, {
     entry: {
-        main: './src/server/index.js',
+        main: './src/server/index.tsx',
     },
-    mode: "development",
+    mode: 'development',
     target: 'node',
     output: {
-        path: path.join(__dirname, "../../dist"),
-        filename: "server.js",
-        publicPath: "/",
+        path: path.join(__dirname, '../../dist'),
+        filename: 'server.js',
+        publicPath: '/',
     },
     optimization: {
-        minimize: false
+        minimize: false,
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                },
-            },
-            {
                 test: /\.scss$/,
-                use: ["null-loader"]
+                use: ['null-loader'],
             },
-        ]
+        ],
     },
 });
