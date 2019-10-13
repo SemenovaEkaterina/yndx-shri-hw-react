@@ -26,8 +26,6 @@
         "no-console": false,
         "variable-name": false,
         "object-literal-sort-keys": false,
-        // убрать
-        "no-shadowed-variable": false,
         "no-namespace": false
     },
     "rulesDirectory": []

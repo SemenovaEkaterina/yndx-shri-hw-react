@@ -5,14 +5,14 @@ module.exports = {
     browsers: {
         chrome: {
             desiredCapabilities: {
-                browserName: "chrome"
-            }
-        }
+                browserName: 'chrome',
+            },
+        },
     },
     plugins: {
         'html-reporter/hermione': {
-            path: 'hermione-html-reporter'
+            path: 'hermione-html-reporter',
         },
-        'hermione-custom-commands': true
-    }
+        'hermione-custom-commands': true,
+    },
 };

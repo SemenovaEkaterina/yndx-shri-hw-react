@@ -8,6 +8,7 @@ COPY ./src ./src
 COPY package.json .
 COPY package-lock.json .
 COPY .babelrc .
+COPY tsconfig.json .
 RUN npm install --only=prod
 
 RUN apk add git
