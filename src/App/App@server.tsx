@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import {Provider} from 'react-redux';
 import {StaticRouter} from 'react-router';
 import {createStore} from 'redux';
 import Root from '../Root';
-import reducer from '../store';
+import reducer, { AppState } from '../store';
 
-export default ({url, state: {state, js, css}}) => {
+interface Props {
+    url: string;
+    state: {
+        state: AppState;
+        js: string[];
+        css: string[];
+    };
+}
+
+const App: FunctionComponent<Props> = ({url, state: {state, js, css}}) => {
     const store = createStore(reducer, state);
 
     return (
@@ -42,3 +51,5 @@ export default ({url, state: {state, js, css}}) => {
         </Provider>
     );
 };
+
+export default App;

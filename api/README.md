@@ -9,5 +9,5 @@
   - handlers - обработчики ошибок
   - utils - утилиты
   - views - обработчики эндпоинт'ов
-  - routes.js - роутер
-  - server.js - точка входа
+  - routes.ts - роутер
+  - server.ts - точка входа

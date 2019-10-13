@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {applyMiddleware, createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import Root from 'src/Root';
-import reducer from '../store';
+import reducer, {AppState} from '../store';
 
 const enhancer = composeWithDevTools(
     applyMiddleware(
@@ -13,7 +13,11 @@ const enhancer = composeWithDevTools(
     ),
 );
 
-function App({state}) {
+interface Props {
+  state: AppState;
+}
+
+const App: FunctionComponent<Props> = ({state}) => {
     const store = createStore(reducer, state, enhancer);
     return (
         <Provider store={store}>
@@ -22,6 +26,6 @@ function App({state}) {
             </BrowserRouter>
         </Provider>
     );
-}
+};
 
 export default App;

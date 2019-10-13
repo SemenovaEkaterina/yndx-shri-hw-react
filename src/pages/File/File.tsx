@@ -16,13 +16,14 @@ import Title from 'src/shared/components/Title';
 import useParams from 'src/shared/hooks/useParams';
 import { fetchFile } from 'src/store/files/actions';
 import { SourceStatus } from 'src/store/types';
+import { AppState } from '../../store';
 
 export default () => {
     // TODO часть с вызовом loadData для текущего рута частично дублируется на страницах -> сделать универсально
     const dispatch = useDispatch();
     const {repoId, path} = useParams();
-    const storeState = useSelector((state) => state);
-    const files = useSelector((state) => state.files);
+    const storeState = useSelector((state: AppState) => state);
+    const files = useSelector((state: AppState) => state.files);
     useEffect(() => {
         if (files.itemStatus === SourceStatus.INITIAL) {
             routes.BLOB.loadData(dispatch, () => storeState, {repoId, path});
@@ -30,18 +31,18 @@ export default () => {
     }, []);
 
     useEffect(() => {
-        dispatch(fetchFile(repoId, path));
+        dispatch(fetchFile(repoId!, path!));
     }, [path]);
 
-    const file = useSelector((state) => state.files.item);
-    const status = useSelector((state) => state.files.itemStatus);
-    const name = useSelector((state) => state.files.name);
-    const current = useSelector((state) => state.repos.item);
+    const file = useSelector((state: AppState) => state.files.item);
+    const status = useSelector((state: AppState) => state.files.itemStatus);
+    const name = useSelector((state: AppState) => state.files.name) || 'File';
+    const current = useSelector((state: AppState) => state.repos.item);
 
     return (
         <>
             {status === SourceStatus.NOT_FOUND && <Redirect to={routes.NOT_FOUND.create()}/>}
-            {repoId !== current && <Redirect to={routes.TREE.create(repoId)}/>}
+            {repoId && repoId !== current && <Redirect to={routes.TREE.create(repoId!)}/>}
             {status === SourceStatus.LOADING && <Loader/>}
             {status === SourceStatus.SUCCESS && (
                 <>
@@ -51,16 +52,18 @@ export default () => {
                             <Tabs items={['details']} selected={'details'}/>
                         </Section>
                         <Section size={SectionSize.M}>
-                            <Title name={name}/>
+                            {name && <Title name={name}/>}
                         </Section>
                     </Container>
-                    <Container full>
-                        <Section size={SectionSize.M} mobile={SectionMobile.S}>
-                            <FileContainer name={name}>
-                                <Code data={file}/>
-                            </FileContainer>
-                        </Section>
-                    </Container>
+                    {file && (
+                      <Container full>
+                          <Section size={SectionSize.M} mobile={SectionMobile.S}>
+                              <FileContainer name={name}>
+                                  <Code data={file}/>
+                              </FileContainer>
+                          </Section>
+                      </Container>
+                    )}
                 </>
             )}
         </>

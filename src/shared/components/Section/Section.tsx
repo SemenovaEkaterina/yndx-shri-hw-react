@@ -19,10 +19,8 @@ interface Props {
     mobile?: SectionMobile;
 }
 
-const Section: FunctionComponent<Props> = ({children, ...props}) => (
-    // TODO
-    // @ts-ignore
-    <div className={section(props)}>
+const Section: FunctionComponent<Props> = ({children, size, mobile}) => (
+    <div className={section({size, mobile})}>
         {children}
     </div>
 );

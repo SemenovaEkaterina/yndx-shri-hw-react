@@ -8,8 +8,9 @@ import Loader from 'src/shared/components/Loader';
 import Section, { SectionSize } from 'src/shared/components/Section';
 import Tabs from 'src/shared/components/Tabs';
 import useParams from 'src/shared/hooks/useParams';
+import { AppState } from 'src/store';
+import { fetchFiles, setPath } from 'src/store/files/actions';
 import { SourceStatus } from 'src/store/types';
-import { fetchFiles, setPath } from '../../store/files/actions';
 import FilesTable from './FilesTable';
 import FilesTitle from './FilesTitle';
 
@@ -17,7 +18,7 @@ export default () => {
     // TODO часть с вызовом loadData для текущего рута частично дублируется на страницах -> сделать универсально
     const dispatch = useDispatch();
     const {repoId, path} = useParams();
-    const storeState = useSelector((state) => state);
+    const storeState = useSelector((state: AppState) => state);
     useEffect(() => {
         if (storeState.files.status === SourceStatus.INITIAL) {
             routes.TREE.loadData(dispatch, () => storeState, {repoId, path});
@@ -32,12 +33,12 @@ export default () => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
-            dispatch(fetchFiles(repoId, path));
+            dispatch(fetchFiles(repoId!, path));
         }
     }, [path, repoId]);
 
-    const status = useSelector((state) => state.files.status);
-    const current = useSelector((state) => state.repos.item);
+    const status = useSelector((state: AppState) => state.files.status);
+    const current = useSelector((state: AppState) => state.repos.item);
 
     return (
         <>
@@ -45,7 +46,7 @@ export default () => {
             {status === SourceStatus.LOADING && <Loader/>}
             {status === SourceStatus.SUCCESS && (
                 <>
-                    {current !== repoId && <Redirect to={routes.TREE.create(current)}/>}
+                    {current !== repoId && <Redirect to={routes.TREE.create(current!)}/>}
                     <div className='Main'>
                         <Container>
                             <Crumbs/>

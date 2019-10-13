@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import './Name.scss';
 
-export default ({children}) => (
-    <span className="Name">{children}</span>
-)
+const Name: FunctionComponent = ({children}) => (
+    <span className='Name'>{children}</span>
+);
+
+export default Name;

@@ -28,10 +28,8 @@ interface Props {
   color?: TypoColor;
 }
 
-const Typo: FunctionComponent<Props> = ({children, className, ...props}) => (
-    // TODO
-    // @ts-ignore
-    <span className={typo(props, [className])}>{children}</span>
+const Typo: FunctionComponent<Props> = ({children, className, size, style, color}) => (
+    <span className={typo({size, style, color}, [className])}>{children}</span>
 );
 
 export default Typo;

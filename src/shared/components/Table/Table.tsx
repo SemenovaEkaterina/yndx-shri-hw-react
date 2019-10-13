@@ -1,12 +1,19 @@
-import React from 'react';
 import {cn} from '@bem-react/classname';
+import React, { FunctionComponent } from 'react';
 import './Table.scss';
 
 const table = cn('Table');
 const tableRow = cn('Table', 'row');
 const tableCol = cn('Table', 'col');
 
-export default props => {
+interface Props {
+  data: {
+    names: Array<{title: string, key: string}>;
+    values: Array<{[key: string]: React.ReactNode}>;
+  };
+}
+
+const Table: FunctionComponent<Props> = (props: Props) => {
     const { data: {names, values} } = props;
 
     return (
@@ -21,4 +28,6 @@ export default props => {
             ))}
         </div>
     );
-}
+};
+
+export default Table;

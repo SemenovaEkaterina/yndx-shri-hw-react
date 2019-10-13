@@ -18,7 +18,7 @@ export enum SourceSize {
 
 interface Props {
   type: SourceType;
-  size: SourceSize;
+  size?: SourceSize;
   to: string;
 }
 

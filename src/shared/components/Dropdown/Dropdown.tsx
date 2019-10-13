@@ -1,10 +1,22 @@
 import {cn} from '@bem-react/classname';
-import React, {useCallback, useState} from 'react';
+import React, {
+  FunctionComponent,
+  useCallback,
+  useState,
+} from 'react';
 import './Dropdown.scss';
 
 const dropdown = cn('Dropdown');
 
-export default ({children, items = [], onCheck}) => {
+interface Props {
+  items: Array<{
+    key: string;
+    content: React.ReactNode;
+  }>;
+  onCheck: (key: string) => void;
+}
+
+const Dropdown: FunctionComponent<Props> = ({children, items= [], onCheck}) => {
     const [opened, setOpened] = useState(false);
 
     const handleCheck = useCallback(
@@ -33,3 +45,5 @@ export default ({children, items = [], onCheck}) => {
         </div>
     );
 };
+
+export default Dropdown;

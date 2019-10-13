@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = merge(defaultConfig, {
     entry: {
-        main: './src/server/index.js',
+        main: './src/server/index.tsx',
     },
     mode: 'development',
     target: 'node',

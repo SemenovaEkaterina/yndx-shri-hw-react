@@ -1,12 +1,16 @@
 import { cn } from '@bem-react/classname';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import Typo, {TypoStyle} from 'src/shared/components/Typo';
 import './Code.scss';
 
 const code = cn('Code');
 const codeLine = cn('Code', 'line');
 
-export default ({data = ''}) => (
+interface Props {
+  data: string;
+}
+
+const Code: FunctionComponent<Props> = ({data}) => (
     <Typo style={TypoStyle.CODE}>
         <div className={code()}>
             <div className={code('rows')}>
@@ -22,3 +26,5 @@ export default ({data = ''}) => (
         </div>
     </Typo>
 );
+
+export default Code;

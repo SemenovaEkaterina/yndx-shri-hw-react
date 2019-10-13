@@ -6,7 +6,7 @@ import Typo from 'src/shared/components/Typo';
 import {fetchRepos} from 'src/store/repos/actions';
 import {File, Index, Main, NotFound} from './pages';
 import routes from './routes';
-import { TypoColor, TypoSize, TypoStyle } from './shared/components/Typo/Typo';
+import { TypoColor, TypoSize, TypoStyle } from './shared/components/Typo';
 
 function Root() {
     const dispatch = useDispatch();

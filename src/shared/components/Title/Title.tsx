@@ -7,7 +7,7 @@ const title = cn('Title');
 
 interface Props {
   name: string;
-  description?: string;
+  description?: React.ReactNode;
 }
 
 const Title: FunctionComponent<Props> = ({name, description}) => (

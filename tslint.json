@@ -22,7 +22,13 @@
         "interface-name": false,
         "prefer-const": true,
         "prefer-readonly": true,
-        "semicolon": [true, "always"]
+        "semicolon": [true, "always"],
+        "no-console": false,
+        "variable-name": false,
+        "object-literal-sort-keys": false,
+        // убрать
+        "no-shadowed-variable": false,
+        "no-namespace": false
     },
     "rulesDirectory": []
 }

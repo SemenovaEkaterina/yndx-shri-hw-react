@@ -1,10 +1,14 @@
-import React from 'react';
 import {cn} from '@bem-react/classname';
+import React, { FunctionComponent } from 'react';
 import './FileContainer.scss';
 
 const fileContainer = cn('FileContainer');
 
-export default ({children, name}) => (
+interface Props {
+  name: string;
+}
+
+const FileContainer: FunctionComponent<Props> = ({children, name}) => (
     <div className={fileContainer()}>
         <div className={fileContainer('header')}>
             <div className={fileContainer('info')}>
@@ -14,4 +18,6 @@ export default ({children, name}) => (
         </div>
         {children}
     </div>
-)
+);
+
+export default FileContainer;
