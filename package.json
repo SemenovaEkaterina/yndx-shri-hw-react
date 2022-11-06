@@ -61,7 +61,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "hermione": "^2.12.6",
+    "hermione": "^5.3.1",
     "hermione-custom-commands": "file:hermione-custom-commands",
     "html-reporter": "^4.13.1",
     "mocha": "^6.2.1",
